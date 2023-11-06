@@ -19,6 +19,13 @@
 ### An interactive tutorial to get you up and running with Cairo and Starknet
 
 ---
+---
+
+## Note : ##
+- ```I uploaded a clone of starklings exercises, together with my answers / solutions , and related comments```
+
+---
+---
 
 ## Setup and run
 
