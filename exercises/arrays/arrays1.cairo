@@ -4,14 +4,17 @@
 // Make me compile and pass the test!
 // Execute `starklings hint arrays1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+
+// soln : array var must be mut, element creation via append()
 
 use array::ArrayTrait;
 use option::OptionTrait;
 
 fn create_array() -> Array<felt252> {
-    let a = ArrayTrait::new(); // something to change here...
+    let mut a = ArrayTrait::new(); // something to change here...
+    a.append(0);
     a.append(1);
+    a.append(2);
     a
 }
 

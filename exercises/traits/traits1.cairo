@@ -8,7 +8,8 @@
 
 // Fill in the impl block to make the code work.
 
-// I AM NOT DONE
+
+// soln : 2 ways, one via struct instance, the other via trait implmentation
 
 #[derive(Copy, Drop)]
 struct Animal {
@@ -16,17 +17,36 @@ struct Animal {
 }
 
 trait AnimalTrait {
-    fn new(noise: felt252) -> Animal;
+    fn new(noise: felt252) -> Animal;  
     fn make_noise(self: Animal) -> felt252;
 }
 
 impl AnimalImpl of AnimalTrait { // TODO: implement the trait AnimalTrait for Animal
+    fn new(noise: felt252) -> Animal {
+        // let animal = Animal { noise : noise};
+        // animal
+        Animal {noise}
+    }
+
+    fn make_noise(self:Animal) -> felt252 {
+        self.noise
+    }
+
 }
 
 #[test]
 fn test_traits1() {
     // TODO make the test pass by creating two instances of Animal
     // and calling make_noise on them
+
+    // method 1 : from struct instances
+    // let cat = Animal { noise : 'meow'};
+    // let cow = Animal { noise : 'moo'};
+
+    // method 2 : from impl 
+    let cat = AnimalImpl::new('meow');
+    let cow = AnimalImpl::new('moo');
+
 
     assert(cat.make_noise() == 'meow', 'Wrong noise');
     assert(cow.make_noise() == 'moo', 'Wrong noise');

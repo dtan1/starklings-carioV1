@@ -1,9 +1,14 @@
-// I AM NOT DONE
+
 // These modules have some issues, can you fix?
 // Run `starklings hint modules2` or `hint` watch command for a hint.
 
+//soln :
+// 1. user super to refer to struct or function of external module, followe by mod name , i.e. super::order::Order
+// 2. define the use keyword inside the currect mod
+
 use debug::PrintTrait;
 const YEAR: u16 = 2050;
+
 
 mod order {
     #[derive(Copy, Drop)]
@@ -16,17 +21,28 @@ mod order {
     }
 
     fn new_order(name: felt252, made_by_phone: bool, item: felt252) -> Order {
-        Order { name, year: YEAR, made_by_phone, made_by_email: !made_by_phone, item,  }
+        Order { name, year: super::YEAR, made_by_phone, made_by_email: !made_by_phone, item,  }
     }
 }
 
+
+
 mod order_utils {
+    use super::order::Order;
+    use super::order::new_order;
+
+    // fn dummy_phoned_order(name: felt252) -> super::order::Order {
+    //     super::order::new_order(name, true, 'item_a')
+    // }
     fn dummy_phoned_order(name: felt252) -> Order {
         new_order(name, true, 'item_a')
     }
 
+    // fn dummy_emailed_order(name: felt252) -> super::order::Order {
+    //    super::order::new_order(name, false, 'item_a')
+    // }
     fn dummy_emailed_order(name: felt252) -> Order {
-        new_order(name, false, 'item_a')
+       new_order(name, false, 'item_a')
     }
 
     fn order_fees(order: Order) -> felt252 {

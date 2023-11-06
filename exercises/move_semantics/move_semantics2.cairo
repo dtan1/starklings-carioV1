@@ -5,12 +5,24 @@
 use array::ArrayTrait;
 use debug::PrintTrait;
 
-// I AM NOT DONE
+
+// line 13 is let mut arr1 = fill_arr(arr0);,
+// line 16 is arr0.print();
+//
+// soln : create a new array var arr0 and get back the ownership, i.e. let arr0 = arr1; (note arr1 is not longer accessible after)
+//          or re-create a new array var arr0 let arr0 = ArrayTrait::new();
+// note : if use clone , i.e. let arr0 = arr1.clone(), then arr1 is STILL accessible after this statement
 
 fn main() {
     let arr0 = ArrayTrait::new();
 
     let mut arr1 = fill_arr(arr0);
+
+    //let arr0 = arr1;   // transfer ownership to arr0
+    let arr0 = ArrayTrait::new();
+
+    //let arr0 = arr1.clone();
+    //arr1.print();
 
     // Do not change the following line!
     arr0.print();
